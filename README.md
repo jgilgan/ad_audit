@@ -36,4 +36,4 @@ Default time for old items (user logon / password set) is 90 days
 
 
 If you have any suggestions / improvements please let me know.
-You're welcome to reach out to me here or via Twitter (@Jan__Gilgan).
+You're welcome to reach out to me here or via Twitter.

@@ -1,4 +1,4 @@
-#requires -version 5
+﻿#requires -version 5
 <#
 .SYNOPSIS
 	Generate a report in HTML format about the chosen AD Options
@@ -6,7 +6,7 @@
 .NOTES
 	Version:		1.0
 	Author:			Jan Gilgan
-	Cration Date:		2021-10-10
+	Cration Date:	2021-10-10
 	Change:			Initial version
 
 .COMPONENT
@@ -29,7 +29,7 @@ param(
     [switch]$admins,
     [switch]$acl,
     [switch]$keeplogs,
-    [string]$lang,
+	[string]$lang,
     [switch]$allchecks
 )
 
@@ -121,21 +121,29 @@ if (($lang -eq "de") -or (-not $lang)) {
 	$passwordNotExpire_header = "<h2>Accounts bei denen die Passwörter nie ablaufen</h2>"
 	$passwordLastSet_header = "<h2>Accounts, die seit 90 Tagen das Kennwort nicht geändert haben</h2>"
 	$krbtgt_header =  "<h2>Datum, an dem das krbtgt Passwort zuletzt geändert wurde</h2>"
+	
 	$domAdmin_header = "<h2>Domänen-Admins</h2>"
 	$orgAdmin_header = "<h2>Organisations-Admins</h2>"
 	$adminUser_header = "<h2>Benutzer, die adm im Namen haben und administrative Rechte haben könnten</h2>"
 	$admimGroup_header = "<h2>Gruppen, die adm im Namen haben und administrative Rechte haben könnten</h2>"
+	
 	$oldServer_header = "<h2>Alte Server Betriebssysteme</h2>"
 	$oldDesktops_header = "<h2>Alte Desktop Betriebssysteme</h2>"
-	$dcs_header = "<h2>Domänen-Controller</h2>"
+
+    $dcs_header = "<h2>Domänen-Controller</h2>"
+	
 	$acls_header = "<h2>ACLs Domänenweit</h2>"
+	
 	$netbios_header = "<h2>NetBios Einstellungen</h2>"
 	$netbios_footer = "<p id='red'>0 / 1 = NetBios aktiviert (potenziell gefährlich!) </p><p id='blue'>2 = NetBios deaktiviert</p>"
+	
 	$passwordPolicy_header = "<h2>Domänen Passwortrichlinie (Standard)</h2>"
+	
 	$gpoOwner_header = "<h2>GPOs und deren Besitzer</h2>"
-	$smb_header = "<h2>SMB Einstellungen</h2>"
-	$smb1_disabled = "SMB1 ist deaktiviert"
-	$smb1_enabled = "!!! SMB1 ist aktiviert !!!"
+
+    $smb_header = "<h2>SMB Einstellungen</h2>"
+    $smb1_disabled = "SMB1 ist deaktiviert"
+    $smb1_enabled = "!!! SMB1 ist aktiviert !!!"
 }
 
 if ($lang -eq "en") {
@@ -144,21 +152,29 @@ if ($lang -eq "en") {
 	$passwordNotExpire_header = "<h2>Accounts with non-expiring passwords</h2>"
 	$passwordLastSet_header = "<h2>Users who did not change passwords in 90 days</h2>"
 	$krbtgt_header =  "<h2>Date on which krbtgt password was last set</h2>"
+	
 	$domAdmin_header = "<h2>Domain-Admins</h2>"
 	$orgAdmin_header = "<h2>Organization-Admins</h2>"
 	$adminUser_header = "<h2>Users who have 'adm' in their names and might be admins</h2>"
 	$admimGroup_header = "<h2>Groups that have 'adm' in their names and might have administrative rights</h2>"
+	
 	$oldServer_header = "<h2>Old Server OperatingSystems</h2>"
 	$oldDesktops_header = "<h2>Old Desktop OperatingSystems</h2>"
-	$dcs_header = "<h2>Domain Controllers</h2>"
+
+    $dcs_header = "<h2>Domain Controllers</h2>"
+	
 	$acls_header = "<h2>Domain ACLs</h2>"
+	
 	$netbios_header = "<h2>NetBios Settings (local machine)</h2>"
 	$netbios_footer = "<p id='red'>0 / 1 = NetBios enabled (^potentially dangerous!) </p><p id='blue'>2 = NetBios disabled</p>"
+	
 	$passwordPolicy_header = "<h2>Default Password Policy</h2>"
+	
 	$gpoOwner_header = "<h2>GPOs and their owners</h2>"
-	$smb_header = "<h2>SMB Settings</h2>"
-	$smb1_disabled = "SMB1 is disabled"
-	$smb1_enabled = "!!! SMB1 is enabled !!!"
+
+    $smb_header = "<h2>SMB Settings</h2>"
+    $smb1_disabled = "SMB1 is disabled"
+    $smb1_enabled = "!!! SMB1 is enabled !!!"
 }
 
 if ($users -or $allchecks) {

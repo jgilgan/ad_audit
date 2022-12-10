@@ -5,6 +5,7 @@ It does not require any software to be installed, it will run out of the box.
 However, you will need Powershell v5.x and it has to be run on a Domain-Controller directly.
 
 **As always: Do not run this script without explicit permission of the network owner!**
+Any misuse of this software will not be the authors responsibility.
 
 ## Usage:
 
